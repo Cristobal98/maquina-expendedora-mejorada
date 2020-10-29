@@ -71,13 +71,17 @@ public class MaquinaExpendedoraMejorada {
         int cantidadDeDineroQueFalta = precioBillete - balanceClienteActual;
         if (cantidadDeDineroQueFalta <= 0) {
              if (numeroBilletes < maximoBilletes){
+                 //Contar numero de billetes
+                 numeroBilletes = numeroBilletes + 1;
+                 int premioCadaTres = numeroBilletes % 3;
+                 double precioDescuento = precioBillete * 0.1;
                  // Simula la impresion de un billete
                  System.out.println("##################");
                  System.out.println("# Billete de tren:");
                  System.out.println("# De " + estacionOrigen + " a " + estacionDestino);
                  System.out.println("# " + precioBillete + " euros.");
-                 if (tipoDeBillete == "premio"){
-                     System.out.println("# Enhorabuena tienes un descuento del 10% en el comercio que tu elijas.");
+                 if (tipoDeBillete == "premio" && premioCadaTres == 0){
+                     System.out.println("# Enhorabuena tienes un descuento de " + precioDescuento + "€ en el comercio que tu elijas.");
                  }
                  System.out.println("##################");
                  System.out.println();         
@@ -86,8 +90,6 @@ public class MaquinaExpendedoraMejorada {
                  totalDineroAcumulado = totalDineroAcumulado + precioBillete;
                  // Reduce el balance del cliente actual dejandole seguir utilizando la maquina
                  balanceClienteActual = balanceClienteActual - precioBillete;
-                 //Contar numero de billetes
-                 numeroBilletes = numeroBilletes + 1;
             } 
             else if (numeroBilletes >= maximoBilletes) {
                 System.out.println("# Lo siento, no es posible imprimir mas billetes de tren.");
